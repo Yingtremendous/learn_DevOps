@@ -5,7 +5,7 @@ from tracemalloc import stop
 from yaml import DirectiveToken
 import tensorflow  as tf
 from tensorflow import keras 
-import kerastuner as kt
+import keras_tuner as kt
 
 mnist = tf.keras.datasets.mnist
 (x_train,y_train),(x_test,y_test) = mnist.load_data()
@@ -15,8 +15,9 @@ def model_builder(hp):
     model = keras.Sequential()
     model.add(keras.layers.Flatten(input_shape=(28, 28)))
 
-    hp_units=hp.Int('units', min_value=16, max_value=512, step=16)
-    model.add(keras.layers.Dense(units=hp_units, activation='relu'))
+    # hp_units=hp.Int('units', min_value=16, max_value=512, step=16)
+    # model.add(keras.layers.Dense(units=hp_units, activation='relu'))
+    model.add(keras.layers.Dense(hp.Choice('units', [16,16,512]), activation='relu'))
     model.add(tf.keras.layers.Dropout(0.2))
     model.add(keras.layers.Dense(10))
 
@@ -31,6 +32,7 @@ tuner = kt.Hyperband(model_builder,
                     factor=3,
                     directory='my_dir',
                     project_name = 'intro_to_kt')
+# kt.RandomSearch
 
 stop_early = tf.keras.callbacks.EarlyStopping(monitor="val_loss",
                                                 patience=5)
@@ -41,3 +43,5 @@ tuner.search(x_train,
             epochs=50,
             validation_split=0.2,
             callbacks=[stop_early])
+
+best_model = tuner.get_best_models()[0]
