@@ -1,0 +1,43 @@
+Neural Architecture Search (NAS) was a promising technique that failed to surpass hand-designed architectures in terms of test set accuracy.
+1 / 1 分
+
+False
+
+True
+正确
+
+Spot on! In fact, NAS can design a novel network architecture that rivals the best human-invented architecture.
+2.
+第 2 个问题
+
+Which of the following characteristics best describe hyperparameters? (Select all that apply)
+1 / 1 分
+
+Hyperparameters are derived via training.
+
+Hyperparameters are set before launching the learning process.
+正确
+
+Excellent! They need to be set before model training begins.
+
+Hyperparameters are not optimized in each training step.
+正确
+
+You’re right on track! Hyperparameters are not automatically optimized during the training process.
+
+Hyperparameters can be quite numerous even in small models.
+正确
+
+Great job! Hyperparameters can be numerous, so, performing manual hyperparameter tuning can be a real brain teaser.
+3.
+第 3 个问题
+
+Does KerasTuner support multiple strategies?
+1 / 1 分
+
+Yes
+
+No
+正确
+
+Exactly! KerasTuner comes with Bayesian Optimization, Hyperband, and Random Search algorithms built-in.
